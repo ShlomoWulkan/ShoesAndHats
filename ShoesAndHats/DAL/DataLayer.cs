@@ -9,7 +9,7 @@ namespace MyLibrary.DAL
         public DataLayer(string ConnectionString) : base(GetOptions(ConnectionString))
         {
             Database.EnsureCreated();
-            Seed();
+            //Seed();
         }
       
         private void Seed()
@@ -20,6 +20,6 @@ namespace MyLibrary.DAL
         {
             return new DbContextOptionsBuilder().UseSqlServer(ConnectionString).Options;
         }
-
+        public DbSet<Hats>Hats { get; set; }
     }
 }
