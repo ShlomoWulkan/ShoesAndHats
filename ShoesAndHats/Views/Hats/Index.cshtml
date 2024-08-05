@@ -52,7 +52,7 @@
                 @Html.DisplayFor(modelItem => item.Brand)
             </td>
             <td>
-                    <img src="@Html.DisplayFor(model => model.Url)" />
+                    <img src="@Html.DisplayFor(modelitem => item.Url)" />
                 </td>
             <td>
                 @Html.ActionLink("עריכה", "EditHat", new { id = item.Id }, new{ @class = "btn btn-primary" })
