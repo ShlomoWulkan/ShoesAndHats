@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ShoesAndHats.Models.Hats>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="CreateHat">הוספת כובע</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Url)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+              <a src=@Html.DisplayFor(modelItem => item.Url)></a>
+
+            </td>
+            <td>
+                @Html.ActionLink("עריכה", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("פרטים", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("מחיקה", "DeleteHat", new { id = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
