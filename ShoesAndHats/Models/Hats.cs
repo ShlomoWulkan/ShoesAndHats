@@ -13,10 +13,8 @@ namespace ShoesAndHats.Models
         public string Color { get; set; } = string.Empty;
         [Display(Name = "מותג")]
         public string Brand { get; set; } = string.Empty;
-        [Display(Name = "תמונה"), Url]
+        [Display(Name = "תמונה")]
         public string Url { get; set; } = string.Empty;
-
-
 
     }
 }

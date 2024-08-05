@@ -4,8 +4,9 @@ namespace ShoesAndHats.DAL
 {
     public class Data
     {
-        string connectionString = "server=WULKAN\\SA; initial catalog=ShoesAndHats; user id=SA; password=1234; TrustServerCertificate=Yes";
-
+        //string connectionString = "server=WULKAN\\SA; initial catalog=ShoesAndHats; user id=SA; password=1234; TrustServerCertificate=Yes";
+        private readonly string connectionString = "server=ELKANA\\SA;initial catalog=ShoesAndHats; user id=SA; " +
+        "password=1234;TrustServerCertificate=Yes";
 
         private static Data _data;
         private DataLayer DataLayer;
