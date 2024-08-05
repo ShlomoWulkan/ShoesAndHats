@@ -31,6 +31,7 @@ namespace ShoesAndHats.Controllers
             Hats? hat  = Data.Get.Hats.FirstOrDefault(h => h.Id == id);
             if (hat == null) return RedirectToAction("index");
             Data.Get.Hats.Remove(hat);
+            TempData["DeleteMessage"] = "הנתונים נמחקו בהצלחה";
             Data.Get.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -55,6 +56,7 @@ namespace ShoesAndHats.Controllers
             currentHat.Url = hat.Url;
 
             Data.Get.Hats.Update(currentHat);
+            TempData["UpdateMessage"] = "הנתונים עודכנו בהצלחה";
             Data.Get.SaveChanges();
             return RedirectToAction("Index");
         }

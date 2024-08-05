@@ -5,6 +5,18 @@
 }
 
 <h1>Index</h1>
+@if (TempData["UpdateMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["UpdateMessage"]
+    </div>
+}
+@if (TempData["DeleteMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["UpdateMessage"]
+    </div>
+}
 
 <p>
     <a asp-action="CreateHat" class="btn btn-primary">הוספת כובע</a>
