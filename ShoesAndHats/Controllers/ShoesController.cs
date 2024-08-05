@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShoesAndHats.DAL;
+using ShoesAndHats.Models;
 
 namespace ShoesAndHats.Controllers
 {
@@ -16,7 +17,8 @@ namespace ShoesAndHats.Controllers
         // GET: ShoesController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Shoes? Shoes = Data.Get.Shoes.Find(id);
+            return View(Shoes);
         }
 
         // GET: ShoesController/Create
@@ -26,13 +28,14 @@ namespace ShoesAndHats.Controllers
         }
 
         // POST: ShoesController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Create(Shoes shoes)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Data.Get.Shoes.Add(shoes);
+                Data.Get.SaveChanges(); 
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -43,17 +46,25 @@ namespace ShoesAndHats.Controllers
         // GET: ShoesController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Shoes? Shoes = Data.Get.Shoes.Find(id);
+            return View(Shoes);
         }
 
         // POST: ShoesController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, Shoes shoes)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Shoes? Shoes = Data.Get.Shoes.Find(id);
+                if (Shoes == null) return RedirectToAction("index");
+                Shoes.Size = shoes.Size;
+                Shoes.Brands = shoes.Brands;
+                Shoes.Color = shoes.Color;
+                Shoes.UrlImage = shoes.UrlImage;
+                Data.Get.Shoes.Update(shoes);
+                Data.Get.SaveChanges();
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -62,24 +73,13 @@ namespace ShoesAndHats.Controllers
         }
 
         // GET: ShoesController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int Id)
         {
-            return View();
-        }
-
-        // POST: ShoesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            Shoes? Shoes = Data.Get.Shoes.Find(Id);
+            if (Shoes == null) return RedirectToAction("index");
+            Data.Get.Shoes.Remove(Shoes);
+            Data.Get.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
